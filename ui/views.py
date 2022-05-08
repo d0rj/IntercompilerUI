@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('This is editor page')
+    return render(request, 'editor/index.html')

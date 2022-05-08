@@ -1,0 +1,21 @@
+
+#code-container {
+    width: 800px;
+    height: 600px;
+    border: 1px solid grey
+}
+
+.btn {
+  background: transparent;
+  cursor: pointer;
+  color: rgba(66, 194, 104, 1.0);
+  font-weight: bold;
+  border-radius: 15px;
+  border: 3px solid rgba(66, 194, 104, 1.0);
+  transition: all 0.3s ease-out;
+}
+
+.btn:hover {
+  background: rgba(66, 194, 104, 1.0);
+  color: rgb(31, 31, 31);
+}

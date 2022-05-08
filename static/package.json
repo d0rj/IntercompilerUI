@@ -1,0 +1,12 @@
+{
+  "name": "intercompiler_ui",
+  "version": "0.0.1",
+  "description": "UI module for InterCompiler online code editor",
+  "main": "index.js",
+  "scripts": {},
+  "author": "d0rj",
+  "license": "ISC",
+  "dependencies": {
+    "monaco-editor": "^0.32.1"
+  }
+}
