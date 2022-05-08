@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход / Регистрация</title>
+  <link rel="stylesheet" href="{% static "login/css/style.css" %}" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static "login/js/script.js" %}" defer></script>
+</head>
+
+<body>
+  <div class="form">
+    <ul class="tab-group">
+      <li class="tab active"><a href="#login">Вход</a></li>
+      <li class="tab"><a href="#signup">Регистрация</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="login">
+        <h1>С возвращением!</h1>
+        <form action="/login/" method="post">
+          {% csrf_token %}
+          <div class="field-wrap">
+            <label>
+              Логин<span class="req">*</span>
+            </label>
+            <input name="login" type="text" required autocomplete="off" />
+          </div>
+          <div class="field-wrap">
+            <label>
+              Пароль<span class="req">*</span>
+            </label>
+            <input name="password" type="password" required autocomplete="off" />
+          </div>
+          <p class="forgot"><a href="#">Забыл пароль?</a></p>
+          <button class="button button-block" />Войти</button>
+        </form>
+      </div>
+      <div id="signup">
+        <h1>Зарегистрироваться бесплатно</h1>
+
+        <form action="/signup/" method="post">
+          {% csrf_token %}
+          <div class="top-row">
+            <div class="field-wrap">
+              <label>
+                Имя<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+
+            <div class="field-wrap">
+              <label>
+                Фамилия<span class="req">*</span>
+              </label>
+              <input type="text" required autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Логин<span class="req">*</span>
+            </label>
+            <input type="text" required autocomplete="off" />
+          </div>
+
+          <div class="field-wrap">
+            <label>
+              Пароль<span class="req">*</span>
+            </label>
+            <input type="password" required autocomplete="off" />
+          </div>
+          <button type="submit" class="button button-block" />Get Started</button>
+        </form>
+      </div>
+    </div><!-- tab-content -->
+  </div> <!-- /form -->
+
+</body>
+
+</html>
