@@ -7,55 +7,66 @@
         <link rel="stylesheet" data-name="vs/editor/editor.main" 
             href="{% static "node_modules/monaco-editor/min/vs/editor/editor.main.css" %}" />
         <link rel="stylesheet" href="{% static "editor/css/style.css" %}" />
+        <title>Редактор</title>
     </head>
     <body>
-        <div class="container-fluid row">
-            <nav class="col-1 text-center">
-                <a href="/" class="row h-25 d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                    Logo
-                </a>
-                <ul class="row-5 h-75 nav nav-pills nav-flush flex-column mb-auto text-center">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link link-success py-3 border-bottom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
-                            <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-success py-3 border-bottom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
-                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-                                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-                <div class="row position-sticky bottom-0 start-0">
-                    <div class="container">
-                        <button class="btn" id="run-btn" onclick="runCode()">RUN</button>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-1 text-center">
+                    <a href="/" class="row h-25 d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                        Logo
+                    </a>
+                    <ul class="row-5 h-75 nav nav-pills nav-flush flex-column mb-auto text-center">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link link-success py-3 border-bottom">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                                <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-success py-3 border-bottom">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="row position-sticky bottom-0 start-0">
+                        <div class="container">
+                            <button class="btn" id="run-btn" onclick="runCode()">RUN</button>
+                        </div>
+                    </div>
+                </nav>
+                <main class="col">
+                    <div>
+                        <h2>Code editor</h2>
+                        <select id="models-select" onchange="onEditorTypeChanged(this)">
+                            <option value="javascript">Javascript</option>
+                            <option value="python" selected>Python 3.10</option>
+                            <option value="scala">Scala 3</option>
+                        </select>
+                        <div id="editor-container">
+                            <div id="code-container"></div>
+                        </div>
+                    </div>
+                </main>
+                <div class="col container" style="min-height: 400px;">
+                    <div class="row-fluid" style="height: 50%;">
+                        <textarea placeholder="Ввод" class="input-area" name="input" id="input"></textarea>
+                    </div>
+                    <div class="row-fluid" style="height: 50%;">
+                        <textarea readonly class="output-area" placeholder="Вывод" name="output" id="output"></textarea>
                     </div>
                 </div>
-            </nav>
-            <main class="col">
-                <div>
-                    <h2>Code editor</h2>
-                    <select id="models-select" onchange="onEditorTypeChanged(this)">
-                        <option value="javascript">Javascript</option>
-                        <option value="python" selected>Python 3.10</option>
-                        <option value="scala">Scala 3</option>
-                    </select>
-                    <div id="editor-container">
-                        <div id="code-container"></div>
-                    </div>
-                </div>
-            </main>
+            </div>
         </div>
 
         <script>

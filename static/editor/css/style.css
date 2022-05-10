@@ -5,6 +5,20 @@
     border: 1px solid grey
 }
 
+.input-area {
+  width: 100%;
+  height: 100%;
+  min-height: 50%;
+  max-height: 100%;
+}
+
+.output-area {
+  width: 100%;
+  height: 100%;
+  min-height: 50%;
+  max-height: 100%;
+}
+
 .btn {
   background: transparent;
   cursor: pointer;
