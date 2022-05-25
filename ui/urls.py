@@ -6,6 +6,7 @@ from ui import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('~/', views.editor, name='editor'),
+    path('~/<str:code_hash>', views.editor, name='editor'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
 ]

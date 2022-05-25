@@ -1,4 +1,4 @@
-const [onEditorTypeChanged, runCode] = (function () {
+const [onEditorTypeChanged, setLanguage, runCode, setCode] = (function () {
     var exportObjects = [];
 
     var editor = null;
@@ -44,6 +44,13 @@ const [onEditorTypeChanged, runCode] = (function () {
         editor.setModel(avaliableModels[type]);
     }
     exportObjects.push(onEditorTypeChanged);
+
+
+    function setLanguage(language) {
+        document.getElementById('models-select').value = language;
+        onEditorTypeChanged(document.getElementById('models-select'));
+    }
+    exportObjects.push(setLanguage);
 
 
     function sendCode(codeObject) {
@@ -99,6 +106,12 @@ const [onEditorTypeChanged, runCode] = (function () {
         theme: 'vs',
         fontSize: '14px',
     });
+
+
+    function setCode(code) {
+        editor.getModel().setValue(code);
+    }
+    exportObjects.push(setCode);
 
 
     monaco.languages.registerCompletionItemProvider('python', {

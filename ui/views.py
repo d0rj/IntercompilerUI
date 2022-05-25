@@ -1,3 +1,4 @@
+from re import A
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import authenticate, login as login_user
@@ -8,9 +9,14 @@ def index(request: HttpRequest) -> HttpResponse:
     return redirect('/~')
 
 
-def editor(request: HttpRequest) -> HttpResponse:
+def editor(request: HttpRequest, code_hash: str = None) -> HttpResponse:
     if request.user.is_authenticated:
-        return render(request, 'editor/index.html')
+        data = {
+            'language': 'cpp',
+            'code': 'hello, world',
+            'input': 'hi',
+        }
+        return render(request, 'editor/index.html', context={'data': data})
     else:
         return redirect('/login/')
 
