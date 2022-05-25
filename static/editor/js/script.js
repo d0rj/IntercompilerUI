@@ -58,11 +58,17 @@ const [onEditorTypeChanged, runCode] = (function () {
         var inpitFile = new File([codeObject['input']], 'input.txt', {
             type: 'text/plain',
         });
-        formData.append('', inpitFile);
+        formData.append('input', inpitFile);
 
         var request = new XMLHttpRequest();
         request.open('POST', 'http://localhost:8081/submit');
         request.send(formData);
+        request.onreadystatechange = () => {
+            if (request.readyState == XMLHttpRequest.DONE) {
+                console.log(request.responseText);
+                document.getElementById('output').value = request.responseText;
+            }
+        }
     }
 
 
