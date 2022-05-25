@@ -68,7 +68,7 @@ const [onEditorTypeChanged, setLanguage, saveCode, runCode, setCode] = (function
         formData.append('input', inpitFile);
 
         var request = new XMLHttpRequest();
-        request.open('POST', 'http://localhost:8081/submit');
+        request.open('POST', 'http://back:8081/submit');
         request.send(formData);
         request.onreadystatechange = () => {
             if (request.readyState == XMLHttpRequest.DONE) {

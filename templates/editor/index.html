@@ -65,12 +65,12 @@
                                 <option value="python" selected>Python 3.10</option>
                                 <option value="cpp">C++</option>
                             </select>
-                            <div id="editor-container">
+                            <div id="editor-container" class="row-fluid" style="height: 100;">
                                 <div id="code-container"></div>
                             </div>
                         </div>
                     </main>
-                    <div class="col" style="min-height: 400px;">
+                    <div class="col">
                         <div class="row-fluid" style="height: 50%;">
                             <textarea placeholder="Ввод" class="input-area" name="input" id="input"></textarea>
                         </div>
@@ -89,7 +89,6 @@
                 </div>
             </div>
           </section>
-          <input id="clipboard_input" type="text" hidden />
           <script>
           let sidebar = document.querySelector(".sidebar");
           let closeBtn = document.querySelector("#btn");
