@@ -5,7 +5,7 @@ const [onEditorTypeChanged, runCode] = (function () {
     var languageExamples = {
         'javascript': "function hi() {\n\tconsole.log('Hello, world!');\n}\n",
         'python': "def main():\n\tprint('Hello, world!')\n",
-        'scala': '@main def hello = println("Hello, world!")\n'
+        'cpp': '#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << "Hello, world!" << endl;\n}\n'
     }
 
 
@@ -55,6 +55,11 @@ const [onEditorTypeChanged, runCode] = (function () {
         });
         formData.append('code', codeFile);
 
+        var inpitFile = new File([codeObject['input']], 'input.txt', {
+            type: 'text/plain',
+        });
+        formData.append('', inpitFile);
+
         var request = new XMLHttpRequest();
         request.open('POST', 'http://localhost:8081/submit');
         request.send(formData);
@@ -64,9 +69,11 @@ const [onEditorTypeChanged, runCode] = (function () {
     function runCode() {
         var code = editor.getValue();
         var language = currentLanguage;
+        var inputText = document.getElementById('input').value;
         var codeObject = {
             'language': language,
             'code': code,
+            'input': inputText,
         }
         sendCode(codeObject)
         console.log(codeObject);
@@ -83,7 +90,8 @@ const [onEditorTypeChanged, runCode] = (function () {
         lineNumbers: 'on',
         readOnly: false,
         wordWrap: 'on',
-        theme: 'vs'
+        theme: 'vs',
+        fontSize: '14px',
     });
 
 

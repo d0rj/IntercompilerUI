@@ -44,6 +44,7 @@ ROOT_URLCONF = 'intercompiler_ui.urls'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
