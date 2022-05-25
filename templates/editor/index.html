@@ -78,6 +78,9 @@
                           <a class="btn" onclick="runCode()">
                             <i class='bx bx-play'></i>
                           </a>
+                          <a class="btn" onclick="saveCode()">
+                            <i class='bx bx-folder-plus'></i>
+                          </a>
                         </div>
                         <div class="row-fluid" style="height: 50%;">
                             <textarea readonly class="output-area" placeholder="Вывод" name="output" id="output"></textarea>
@@ -86,6 +89,7 @@
                 </div>
             </div>
           </section>
+          <input id="clipboard_input" type="text" hidden />
           <script>
           let sidebar = document.querySelector(".sidebar");
           let closeBtn = document.querySelector("#btn");
@@ -114,8 +118,6 @@
             function setInput(input) {
               document.getElementById('input').value = input;
             }
-            // saveCode({'language': 'python', 'code': 'fuck', 'input': 'you'});
-
         </script>
         <script src="{% static "node_modules/monaco-editor/min/vs/loader.js" %}"></script>
         <script src="{% static "node_modules/monaco-editor/min/vs/editor/editor.main.nls.js" %}"></script>

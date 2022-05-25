@@ -92,7 +92,9 @@ const [onEditorTypeChanged, setLanguage, saveCode, runCode, setCode] = (function
         request.send(formData);
         request.onreadystatechange = () => {
             if (request.readyState == XMLHttpRequest.DONE) {
-                console.log(request.responseText);
+                let result = JSON.parse(request.responseText);
+                console.log(result);
+                alert('Сохранённый код: ' + result['hash']);
             }
         }
     }
