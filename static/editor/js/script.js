@@ -1,4 +1,4 @@
-const [onEditorTypeChanged, setLanguage, runCode, setCode] = (function () {
+const [onEditorTypeChanged, setLanguage, saveCode, runCode, setCode] = (function () {
     var exportObjects = [];
 
     var editor = null;
@@ -77,6 +77,26 @@ const [onEditorTypeChanged, setLanguage, runCode, setCode] = (function () {
             }
         }
     }
+
+
+    function saveCode() {
+        var formData = new FormData();
+
+        formData.append('language', selectedModel());
+        formData.append('code', editor.getValue());
+        formData.append('input', document.getElementById('input').value);
+
+        var request = new XMLHttpRequest();
+        request.open('POST', 'http://localhost:8000/save/');
+        formData.append('Access-Control-Allow-Origin', '*');
+        request.send(formData);
+        request.onreadystatechange = () => {
+            if (request.readyState == XMLHttpRequest.DONE) {
+                console.log(request.responseText);
+            }
+        }
+    }
+    exportObjects.push(saveCode);
 
 
     function runCode() {

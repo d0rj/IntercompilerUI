@@ -9,4 +9,5 @@ urlpatterns = [
     path('~/<str:code_hash>', views.editor, name='editor'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
+    path('save/', views.save, name='save'),
 ]

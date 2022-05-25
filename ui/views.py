@@ -1,8 +1,13 @@
-from re import A
+import json
+import base64
+import hashlib
+from pathlib import Path
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, JsonResponse
 from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -11,11 +16,14 @@ def index(request: HttpRequest) -> HttpResponse:
 
 def editor(request: HttpRequest, code_hash: str = None) -> HttpResponse:
     if request.user.is_authenticated:
-        data = {
-            'language': 'cpp',
-            'code': 'hello, world',
-            'input': 'hi',
-        }
+        data = {}
+        if code_hash:
+            if not Path(f'./code_storage/{code_hash}.json').exists():
+                return redirect('/~')
+
+            with open(f'./code_storage/{code_hash}.json', 'r') as file:
+                data = json.load(file)
+
         return render(request, 'editor/index.html', context={'data': data})
     else:
         return redirect('/login/')
@@ -33,7 +41,7 @@ def login(request: HttpRequest) -> HttpResponse:
             return redirect('/~')
         else:
             print(request.POST)
-            return HttpResponse(f'Invalid: {username} {password}')
+            return HttpResponse(f'Пользователя не существует: ')
 
 
 def signup(request: HttpRequest) -> HttpResponse:
@@ -52,3 +60,23 @@ def signup(request: HttpRequest) -> HttpResponse:
         user.save()
         login_user(request, user)
         return redirect('/~')
+
+
+@csrf_exempt
+def save(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        code = request.POST.get('code')
+        input = request.POST.get('input')
+        data = {
+            'language': language,
+            'code': code,
+            'input': input,
+        }
+
+        full_string = language + code + input
+        hasher = hashlib.sha1(full_string.encode())
+        hash = str(base64.urlsafe_b64encode(hasher.digest()[:6]).decode())
+        with open(f'./code_storage/{hash}.json', 'w+') as file:
+            json.dump(data, file)
+        return JsonResponse({'status': 'ok', 'hash': hash})
