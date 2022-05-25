@@ -5,7 +5,7 @@ from pathlib import Path
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest, JsonResponse
-from django.contrib.auth import authenticate, login as login_user
+from django.contrib.auth import authenticate, login as login_user, logout
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 
@@ -42,6 +42,11 @@ def login(request: HttpRequest) -> HttpResponse:
         else:
             print(request.POST)
             return HttpResponse(f'Пользователя не существует: ')
+
+
+def logout_request(request: HttpRequest) -> HttpResponse:
+    logout(request)
+    return redirect('/')
 
 
 def signup(request: HttpRequest) -> HttpResponse:

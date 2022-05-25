@@ -268,6 +268,10 @@
   border-radius: 0px;
   transition: all 0.5s ease;
 }
+.sidebar .profile #log_out:hover {
+  cursor: pointer;
+  color: #fff;
+}
 .sidebar.open .profile #log_out{
   width: 30px;
   background: none;
