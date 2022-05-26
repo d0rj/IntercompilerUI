@@ -5,7 +5,7 @@ const [onEditorTypeChanged, setLanguage, saveCode, runCode, setCode] = (function
     var languageExamples = {
         'javascript': "function hi() {\n\tconsole.log('Hello, world!');\n}\n",
         'python': "def main():\n\tprint('Hello, world!')\n",
-        'cpp': '#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << "Hello, world!" << endl;\n}\n'
+        'golang': 'package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello, sorld!\")\n}\n'
     }
 
 
@@ -68,7 +68,7 @@ const [onEditorTypeChanged, setLanguage, saveCode, runCode, setCode] = (function
         formData.append('input', inpitFile);
 
         var request = new XMLHttpRequest();
-        request.open('POST', 'http://back:8081/submit');
+        request.open('POST', 'http://localhost:8081/submit');
         request.send(formData);
         request.onreadystatechange = () => {
             if (request.readyState == XMLHttpRequest.DONE) {
